@@ -35,6 +35,8 @@ choix = st.sidebar.selectbox(label="Menu", options=["Accueil",
                                                     "Dijkstra graphe random 2D "])
 st.sidebar.write("##")
 
+sommet_depart, sommet_arrivee = 0,0
+
 if choix == "Accueil":
     st.markdown('<p class="first_titre">Graphes</p>', unsafe_allow_html=True)
     st.write("---")
@@ -78,7 +80,7 @@ elif choix == "Affichage graphe 2D depuis csv":
         st.plotly_chart(fig_2D)
 
 elif choix == "Affichage graphe random 2D":
-    nb_nodes = st.sidebar.slider(label="nombre de noeuds", min_value=0, max_value=60, value=30, step=1)
+    nb_nodes = st.sidebar.slider(label="nombre de noeuds", min_value=1, max_value=60, value=30, step=1)
     if nb_nodes < 30:
         radius = 0.45
     else:
@@ -99,10 +101,8 @@ elif choix == "Dijkstra graphe 2D depuis csv":
     # Dijkstra
     dijkstra_edges, dijkstra_nodes = set_weights(edge_csv_2d, node_csv_2d)
     G = graphe(dijkstra_edges)
-    sommet_depart = st.sidebar.slider(label="sommet de départ", min_value=min(G.keys()),
-                                              max_value=max(G.keys()), step=1)
-    sommet_arrivee = st.sidebar.slider(
-        label="sommet d'arrivée", min_value=min(G.keys()), max_value=max(G.keys()), step=1)
+    sommet_depart = min(G.keys())
+    sommet_arrivee = max(G.keys())
     st.write("##")
     if st.sidebar.button("Générer le graphe"):
         dijkstra_resultat = make_path(parent=dijkstra(G=G, start=sommet_depart, goal=sommet_arrivee),
@@ -114,26 +114,25 @@ elif choix == "Dijkstra graphe 2D depuis csv":
                 graphe_2d(nodes=dijkstra_nodes, edges=dijkstra_edges, dijkstra_path=dijkstra_resultat, titre=""))
 
 elif choix == "Dijkstra graphe random 2D ":
-    nb_nodes = st.sidebar.slider(label="nombre de noeuds", min_value=0, max_value=60, value=30, step=1)
-    if nb_nodes < 30:
-        radius = 0.45
-    else:
-        radius = 0.30
-    # Données
-    random_node_2D, random_edges_2D = random_simple_graph(nb_nodes=nb_nodes, radius=radius)
-    # Dijkstra
-    dijkstra_edges, dijkstra_nodes = set_weights(random_edges_2D, random_node_2D)
-    G = graphe(dijkstra_edges)
-    sommet_depart = st.sidebar.slider(label="sommet de départ", min_value=min(G.keys()),
-                                              max_value=max(G.keys()), step=1)
-    sommet_arrivee = st.sidebar.slider(
-        label="sommet d'arrivée", min_value=min(G.keys()), max_value=max(G.keys()), step=1)
-    st.write("##")
-    if st.sidebar.button("Générer le graphe"):
-        dijkstra_resultat = make_path(parent=dijkstra(G=G, start=sommet_depart, goal=sommet_arrivee),
-                                      goal=sommet_arrivee)
-        st.sidebar.success("\tChemin le plus court du sommet " + str(sommet_depart) + " jusqu'au sommet " + str(
-            sommet_arrivee) + " : " + str(dijkstra_resultat))
-        st.plotly_chart(
-                graphe_2d(nodes=dijkstra_nodes, edges=dijkstra_edges, dijkstra_path=dijkstra_resultat, titre=""))
 
+        nb_nodes = st.sidebar.slider(label="nombre de noeuds", min_value=1, max_value=60, value=30)
+        if nb_nodes < 30:
+            radius = 0.45
+        else:
+            radius = 0.30
+        # Données
+        random_node_2D, random_edges_2D = random_simple_graph(nb_nodes=nb_nodes, radius=radius)
+        # Dijkstra
+        dijkstra_edges, dijkstra_nodes = set_weights(random_edges_2D, random_node_2D)
+        G = graphe(dijkstra_edges)
+
+        sommet_depart = min(G.keys())
+        sommet_arrivee = max(G.keys())
+
+        st.write("##")
+        if st.sidebar.button("Générer le graphe"):
+            dijkstra_resultat = make_path(parent=dijkstra(G=G, start=sommet_depart, goal=sommet_arrivee),
+                                              goal=sommet_arrivee)
+            st.sidebar.success("\tChemin le plus court du sommet " + str(sommet_depart) + " jusqu'au sommet " + str(
+                    sommet_arrivee) + " : " + str(dijkstra_resultat))
+            st.plotly_chart(graphe_2d(nodes=dijkstra_nodes, edges=dijkstra_edges, dijkstra_path=dijkstra_resultat, titre=""))
