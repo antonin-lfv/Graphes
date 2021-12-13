@@ -5,7 +5,7 @@
 	<p/>
 
 <p align="center">
-  <a href="https://share.streamlit.io/antonin-lfv/online_preprocessing_for_ml/main.py"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg"/></a>
+  <a href="https://share.streamlit.io/antonin-lfv/graphes/main.py"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg"/></a>
   </p>
 
 <p align="center">
