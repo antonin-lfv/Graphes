@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
     elif choix == '3':
         # Données
-        random_node_2D, random_edges_2D = random_simple_graph(nb_nodes=25, radius=0.45)
+        random_node_2D, random_edges_2D = random_simple_graph(nb_nodes=40, radius=0.45)
         # Affichage
         fig_2D_random = graphe_2d(nodes=random_node_2D, edges=random_edges_2D, dijkstra_path=None,
                                   titre=None)  # Random Graphe 2D
