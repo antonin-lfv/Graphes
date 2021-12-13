@@ -125,13 +125,15 @@ def graphe_2d(nodes, edges, dijkstra_path, titre):
         titlefont_size=16,
         showlegend=False,
         hovermode='closest',
-        margin=dict(b=20, l=5, r=5, t=40),
         xaxis=dict(showgrid=False, zeroline=False,
                    showticklabels=False),
         yaxis=dict(showgrid=False, zeroline=False,
                    showticklabels=False),
+        autosize=False,
+        width=1200, height=650,
+        margin=dict(l=40, r=50, b=40, t=40),
         paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(234,234,242,255)'
+        plot_bgcolor='rgba(0,0,0,0)',
     )
 
     return fig
