@@ -99,8 +99,9 @@ elif choix == "Dijkstra graphe 2D depuis csv":
     # Dijkstra
     dijkstra_edges, dijkstra_nodes = set_weights(edge_csv_2d, node_csv_2d)
     G = graphe(dijkstra_edges)
-    sommet_depart, sommet_arrivee = st.sidebar.slider(label="sommet de départ", min_value=min(G.keys()),
-                                              max_value=max(G.keys()), value=min(G.keys()), step=1), st.sidebar.slider(
+    sommet_depart = st.sidebar.slider(label="sommet de départ", min_value=min(G.keys()),
+                                              max_value=max(G.keys()), value=min(G.keys()), step=1)
+    sommet_arrivee = st.sidebar.slider(
         label="sommet d'arrivée", min_value=min(G.keys()), max_value=max(G.keys()), value=max(G.keys()), step=1)
     st.write("##")
     if st.sidebar.button("Générer le graphe"):
@@ -123,8 +124,9 @@ elif choix == "Dijkstra graphe random 2D ":
     # Dijkstra
     dijkstra_edges, dijkstra_nodes = set_weights(random_edges_2D, random_node_2D)
     G = graphe(dijkstra_edges)
-    sommet_depart, sommet_arrivee = st.sidebar.slider(label="sommet de départ", min_value=min(G.keys()),
-                                              max_value=max(G.keys()), value=min(G.keys()), step=1), st.sidebar.slider(
+    sommet_depart = st.sidebar.slider(label="sommet de départ", min_value=min(G.keys()),
+                                              max_value=max(G.keys()), value=min(G.keys()), step=1)
+    sommet_arrivee = st.sidebar.slider(
         label="sommet d'arrivée", min_value=min(G.keys()), max_value=max(G.keys()), value=max(G.keys()), step=1)
     st.write("##")
     if st.sidebar.button("Générer le graphe"):
