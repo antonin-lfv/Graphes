@@ -137,4 +137,3 @@ elif choix == "Dijkstra graphe random 2D ":
         st.plotly_chart(
                 graphe_2d(nodes=dijkstra_nodes, edges=dijkstra_edges, dijkstra_path=dijkstra_resultat, titre=""))
 
-
